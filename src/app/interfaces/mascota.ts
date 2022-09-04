@@ -1,9 +1,9 @@
 //crear interface mascota
 export interface Mascota {
-    id: number;
+    id?: number;
     nombre: string;
     edad: number;
     raza: string;
     color: string;
-    peso: string;
+    peso: number;
 }
