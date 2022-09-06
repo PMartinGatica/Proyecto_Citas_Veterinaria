@@ -1,0 +1,19 @@
+
+.title {
+    text-align: center;
+    background-color: grey;
+    color: white;
+    font-size: 20px;
+    padding: 30px;
+}
+
+.container {
+    margin: 0 15%;
+}
+
+
+
+.card{
+    margin-top: 5px;
+    text-align: center;
+}
