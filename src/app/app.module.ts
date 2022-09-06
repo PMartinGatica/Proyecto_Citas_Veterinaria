@@ -10,17 +10,9 @@ import { AgrergarEditarMascotaComponent } from './components/agrergar-editar-mas
 import { ListadoMascotaComponent } from './components/listado-mascota/listado-mascota.component';
 import { VerMascotaComponent } from './components/ver-mascota/ver-mascota.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared/shared.module';
 
-//MATERIAL
-import { MatTableModule } from '@angular/material/table';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDialogModule } from '@angular/material/dialog';
+
 
 @NgModule({
   declarations: [
@@ -33,15 +25,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatTableModule,
-    MatSliderModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    MatDialogModule,
+    SharedModule
+ 
   ],
   providers: [],
   bootstrap: [AppComponent],
