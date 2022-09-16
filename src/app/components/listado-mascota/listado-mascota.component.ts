@@ -4,21 +4,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Mascota } from 'src/app/interfaces/mascota';
+import { MascotaService } from '../../services/mascota.service';
 
 
 
-const ListadoMascota: Mascota[] = [
-  {nombre: 'Firulais', edad: 2, raza: 'Pastor Aleman', color: 'Cafe', peso: 20},
-  {nombre: 'Pelusa', edad: 1, raza: 'Persa', color: 'Blanco', peso: 5},
-  {nombre: 'Pompin', edad: 3, raza: 'Pastor', color: 'Cafe', peso: 21},
-  {nombre: 'Kira', edad: 2, raza: 'Caniche', color: 'Blanco', peso: 6},
-  {nombre: 'Rufus', edad: 2, raza: 'Builldog', color: 'Cafe', peso: 27},
-  {nombre: 'Tomy', edad: 1, raza: 'Sin raza', color: 'Blanco', peso: 8},
-  {nombre: 'Charly', edad: 3, raza: 'Lobo', color: 'Cafe', peso: 29},
-  {nombre: 'Viki', edad: 2, raza: 'Foxterrier', color: 'Blanco', peso: 3},
-
-
-];
 
 @Component({
   selector: 'app-listado-mascota',
@@ -28,7 +17,7 @@ const ListadoMascota: Mascota[] = [
 export class ListadoMascotaComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = ['nombre', 'edad', 'raza', 'color', 'peso','acciones'];
-  dataSource = new MatTableDataSource<Mascota>(ListadoMascota);
+  dataSource = new MatTableDataSource<Mascota>();
   loading: boolean = false; 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -37,20 +26,35 @@ export class ListadoMascotaComponent implements OnInit, AfterViewInit {
 
   
 
-  constructor( private _snackBar: MatSnackBar) { }
+  constructor( private _snackBar: MatSnackBar , private _mascotaService: MascotaService) { }
 
   ngOnInit(): void {
+    this.obtenerMascotas();
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    if (this.dataSource.data.length > 0) {
     this.paginator._intl.itemsPerPageLabel = 'Registros por pagina';
+
+    }
   }
+      
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  obtenerMascotas(){
+    this.loading = true;
+    this._mascotaService.getMascotas().subscribe(data => {
+      this.loading = false;
+      this.dataSource.data = data;
+    // }, error => {this.loading = false;
+    //   alert("Error al cargar los datos");
+    });
   }
 
   eliminarMascota(id: number){

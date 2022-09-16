@@ -1,0 +1,29 @@
+.title {
+    text-align: center;
+    background-color: grey;
+    color: white;
+    font-size: 20px;
+    padding: 30px;
+}
+
+.container {
+    margin: 0 20%;
+}
+
+.card{
+  margin-top: 10px;
+}
+
+.input{
+  width: 100%;
+  text-align: center;
+  margin: 5px ;
+}
+
+.btnVolver{
+  margin-left: 5px;
+}
+
+form{
+  align-items: center;
+}
